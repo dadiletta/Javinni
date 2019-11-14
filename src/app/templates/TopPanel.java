@@ -3,6 +3,7 @@ package app.templates; // always declare your package first
 // JAVA IMPORTS
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 // LOCAL IMPORTS
@@ -17,8 +18,12 @@ public class TopPanel extends JPanel {
      * Assembles the menu bar for our app
      */
     public TopPanel(){
-        
+        this.setMaximumSize( new Dimension(
+            Integer.MAX_VALUE,
+            50
+    ) );
         JLabel label = new JLabel("Level");
+
         
         // RESET BUTTON
         JButton reset = new JButton("Reset");

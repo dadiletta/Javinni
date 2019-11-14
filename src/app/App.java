@@ -21,6 +21,7 @@ public class App {
     public static JTextArea textFeed; // not following the best practices of encapsulation
     public static JPanel topPanel; // not following the best practices of encapsulation
     public static JPanel gameControls; // not following the best practices of encapsulation
+    public static JFrame options;
     /**
      * App launcher
      * @param args
@@ -36,20 +37,21 @@ public class App {
         JMenuBar menu = new MainMenuBar();
         // Instantiate our custom JPanel from templates/GameControls.java
         gameControls = new GameControls(); 
-        topPanel = new TopPanel();
-        JPanel top = new JPanel(new FlowLayout(FlowLayout.LEADING));
-        top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
-        top.add(menu);
-        top.add(topPanel);
+        // instantiate our hidden options JFrame from templates/OptionsFrame.java
+        options = new OptionsFrame();
         // Text Area at the Center
-        
         textFeed = new TextFeed();
         JScrollPane scroll = new JScrollPane (textFeed, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        topPanel = new TopPanel();
+        JPanel center = new JPanel();
+        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        center.add(topPanel);
+        center.add(scroll);
 
         // Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, gameControls);
-        frame.getContentPane().add(BorderLayout.NORTH, top);
-        frame.getContentPane().add(BorderLayout.CENTER, scroll);
+        frame.getContentPane().add(BorderLayout.NORTH, menu);
+        frame.getContentPane().add(BorderLayout.CENTER, center);
         frame.setVisible(true);
     }
 
