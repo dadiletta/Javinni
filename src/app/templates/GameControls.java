@@ -1,16 +1,22 @@
-package app;
+package app.templates; // always declare your package first
 
+// JAVA IMPORTS
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+// LOCAL IMPORTS
+import app.App; // connect to the static class from another package
 
-public class ChatControls extends JPanel {
+/**
+ * Menu bar to send input into the main window's text area
+ */
+public class GameControls extends JPanel {
 
     /**
      * Assembles the menu bar for our app
      */
-    public ChatControls(){
+    public GameControls(){
         
         JLabel label = new JLabel("Enter Text");
         JTextField tf = new JTextField(10); // accepts upto 10 characters
@@ -27,18 +33,17 @@ public class ChatControls extends JPanel {
             }
         });
 
+        // RESET BUTTON
         JButton reset = new JButton("Reset");
         reset.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                App.ta.setText("");
+                App.textFeed.setText("");
             }
         });
 
-
         // ADD PARTS TO ELEMENT
-        this.add(label); // Components Added using Flow Layout
         this.add(label); // Components Added using Flow Layout
         this.add(tf);
         this.add(send);

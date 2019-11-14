@@ -1,15 +1,15 @@
-package app;
+package app.templates;
 import javax.swing.*;
 
 
-public class MenuBar extends JMenuBar {
+public class MainMenuBar extends JMenuBar {
 
     /**
      * Assembles the menu bar for our app
      */
-    public MenuBar(){
+    public MainMenuBar(){
 
-        JMenu m1 = new JMenu("FILE");
+        JMenu m1 = new JMenu("File");
         JMenu m2 = new JMenu("Help");
         this.add(m1);
         this.add(m2);

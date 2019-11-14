@@ -4,16 +4,23 @@ It implements the following guides:
 - https://www.guru99.com/java-swing-gui.html
 - https://gilmour.online/compsci/ap-computer-science
 */
+package app; // always declare your package first
 
-package app;
-import javax.swing.*;
+// JAVA IMPORTS
 import java.awt.*;
+import javax.swing.*;
+
+// LOCAL IMPORTS
+import app.templates.*;
+import app.models.*;
 
 public class App {
     
     // STATIC INSTANCE VARIABLES TO MAKE THINGS MORE ACCESSIBLE
     private static JFrame frame;
-    public static JTextArea ta;
+    public static JTextArea textFeed; // not following the best practices of encapsulation
+    public static JPanel topPanel; // not following the best practices of encapsulation
+    public static JPanel gameControls; // not following the best practices of encapsulation
     /**
      * App launcher
      * @param args
@@ -25,19 +32,24 @@ public class App {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close option
         frame.setSize(400, 400); // starting size
 
-        // Instantiate our custom menu from MenuBar.java
-        JMenuBar mb = new MenuBar();
-        // Instantiate our custom JPanel from ChatControls.java
-        JPanel chatPanel = new ChatControls(); 
-        
+        // Instantiate our custom menu from templates/MainMenuBar.java
+        JMenuBar menu = new MainMenuBar();
+        // Instantiate our custom JPanel from templates/GameControls.java
+        gameControls = new GameControls(); 
+        topPanel = new TopPanel();
+        JPanel top = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
+        top.add(menu);
+        top.add(topPanel);
         // Text Area at the Center
-        ta = new JTextArea();
-        ta.setEditable(false);
+        
+        textFeed = new TextFeed();
+        JScrollPane scroll = new JScrollPane (textFeed, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        //Adding Components to the frame.
-        frame.getContentPane().add(BorderLayout.SOUTH, chatPanel);
-        frame.getContentPane().add(BorderLayout.NORTH, mb);
-        frame.getContentPane().add(BorderLayout.CENTER, ta);
+        // Adding Components to the frame.
+        frame.getContentPane().add(BorderLayout.SOUTH, gameControls);
+        frame.getContentPane().add(BorderLayout.NORTH, top);
+        frame.getContentPane().add(BorderLayout.CENTER, scroll);
         frame.setVisible(true);
     }
 
@@ -46,8 +58,7 @@ public class App {
      * @param text
      */
     public static void addText(String text){
-        ta.append(text + "\n");
+        textFeed.append(text + "\n");
     }
-
 
 }
