@@ -1,10 +1,7 @@
 
-
-
 # Javinni
 
 The world's most okay Java app starter.
-
 
 ## Install
 
